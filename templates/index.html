@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phishing Email Investigator</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🔍</span>
+        <span>PhishInvestigator</span>
+      </div>
+      <p class="tagline">Email Forensics &amp; Phishing Detection</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="two-col">
+
+      <!-- LEFT: Input Panel -->
+      <section class="panel input-panel">
+        <h2>Analyze an Email</h2>
+
+        <div class="tab-bar">
+          <button class="tab active" data-tab="manual">Manual Input</button>
+          <button class="tab" data-tab="eml">Upload .eml File</button>
+          <button class="tab" data-tab="headers">Paste Headers</button>
+        </div>
+
+        <form id="analyzeForm" enctype="multipart/form-data">
+
+          <!-- Manual tab -->
+          <div class="tab-content active" id="tab-manual">
+            <div class="field-row">
+              <div class="field">
+                <label>Sender Address</label>
+                <input type="text" name="sender" placeholder="e.g. support@paypa1-secure.net" />
+              </div>
+              <div class="field">
+                <label>Subject Line</label>
+                <input type="text" name="subject" placeholder="e.g. URGENT: Verify your account" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Email Body</label>
+              <textarea name="body" rows="10" placeholder="Paste the full email body here..."></textarea>
+            </div>
+            <div class="field">
+              <label>Links / URLs <span class="hint">(comma or newline separated)</span></label>
+              <textarea name="links" rows="3" placeholder="http://paypa1-verify.ru/login&#10;https://bit.ly/3xAb92k"></textarea>
+            </div>
+          </div>
+
+          <!-- EML tab -->
+          <div class="tab-content" id="tab-eml">
+            <div class="upload-zone" id="dropZone">
+              <div class="upload-icon">📧</div>
+              <p>Drag &amp; drop a <strong>.eml</strong> file here</p>
+              <p class="hint">or click to browse</p>
+              <input type="file" name="eml_file" id="emlFile" accept=".eml" />
+            </div>
+            <div id="emlFilename" class="file-chosen" style="display:none;"></div>
+          </div>
+
+          <!-- Headers tab -->
+          <div class="tab-content" id="tab-headers">
+            <div class="field">
+              <label>Raw Email Headers</label>
+              <textarea name="raw_headers" rows="14" placeholder="Received: from mail.example.com ([192.168.1.1])&#10;  by mx.google.com with SMTP&#10;Authentication-Results: spf=fail&#10;From: support@paypa1.com&#10;..."></textarea>
+            </div>
+            <div class="field">
+              <label>Email Body <span class="hint">(optional alongside headers)</span></label>
+              <textarea name="body" rows="5" placeholder="Paste body here too for full analysis..."></textarea>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="submit" class="btn-primary" id="analyzeBtn">
+              <span class="btn-icon">🔎</span> Analyze Email
+            </button>
+            <button type="button" class="btn-secondary" id="clearBtn">Clear</button>
+            <button type="button" class="btn-ghost" id="exampleBtn">Load Example</button>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- RIGHT: Results Panel -->
+      <section class="panel results-panel" id="resultsPanel">
+        <div class="results-empty" id="resultsEmpty">
+          <div class="empty-icon">🛡️</div>
+          <p>Submit an email to see the forensic report</p>
+        </div>
+        <div id="resultsContent" style="display:none;"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
