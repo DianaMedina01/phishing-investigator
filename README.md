@@ -73,7 +73,7 @@ Then open http://localhost:5000 in your browser.
 | Subdomain brand abuse | URLs |
 | PhishTank database match | URLs (requires API key) |
 
-## Getting Your PhishTank API Key
+## PhishTank API Key
 
 1. Go to https://www.phishtank.com/api_register.php
 2. Create a free account
